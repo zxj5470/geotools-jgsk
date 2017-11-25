@@ -1,13 +1,12 @@
-package top.cuggis.geotools.component;
+package top.cuggis.geotools.component.actions;
 
 import org.geotools.swing.MapPane;
-import org.geotools.swing.action.MapAction;
 import org.geotools.swing.locale.LocaleUtils;
 import top.cuggis.geotools.utils.MapLoader;
 
 import java.awt.event.ActionEvent;
 
-public class OpenFileAction extends MapAction {
+public class OpenFileAction extends ZhMapAction {
 
     public static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "Open");
     public static final String TOOL_TIP = LocaleUtils.getValue("CursorTool", "OpenTooltip");
