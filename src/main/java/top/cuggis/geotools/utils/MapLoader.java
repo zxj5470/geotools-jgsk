@@ -23,11 +23,11 @@ public class MapLoader {
         }
         try {
             FileDataStore store;
-
             store = FileDataStoreFinder.getDataStore(file);
             SimpleFeatureSource featureSource = store.getFeatureSource();
             Style style = SLD.createSimpleStyle(featureSource.getSchema());
             layer = new FeatureLayer(featureSource, style);
+            System.out.println(layer);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,9 +36,7 @@ public class MapLoader {
 
     public static void openAndLoadMap(String... fileType){
         Layer l=openFile(fileType);
-        System.out.println(l==null);
         if(l!=null){
-            System.out.println(l.getTitle());
             Main.getMap().addLayer(l);
         }
     }
