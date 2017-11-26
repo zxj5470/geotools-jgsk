@@ -31,13 +31,13 @@ import org.geotools.swing.JMapPane;
 import org.geotools.swing.MapLayerTable;
 import org.geotools.swing.action.InfoAction;
 import org.geotools.swing.action.NoToolAction;
-import org.geotools.swing.action.PanAction;
 import org.geotools.swing.action.ResetAction;
 import org.geotools.swing.action.ZoomOutAction;
 import org.geotools.swing.control.JMapStatusBar;
-import top.cuggis.geotools.component.actions.OpenFileAction;
-import top.cuggis.geotools.component.actions.RunScriptAction;
-import top.cuggis.geotools.component.actions.ZhZoomInAction;
+import top.cuggis.geotools.ui.component.actions.ZhOpenFileAction;
+import top.cuggis.geotools.ui.component.actions.ZhPanAction;
+import top.cuggis.geotools.ui.component.actions.ZhRunScriptAction;
+import top.cuggis.geotools.ui.component.actions.ZhZoomInAction;
 
 public class ZhJMapFrame extends JFrame {
     public static final String TOOLBAR_INFO_BUTTON_NAME = "ToolbarInfoButton";
@@ -188,7 +188,7 @@ public class ZhJMapFrame extends JFrame {
                 }
 
                 if (this.toolSet.contains(Tool.PAN)) {
-                    btn = new JButton(new PanAction(this.mapPane));
+                    btn = new JButton(new ZhPanAction(this.mapPane));
                     btn.setName("ToolbarPanButton");
                     this.toolBar.add(btn);
                     cursorToolGrp.add(btn);
@@ -209,13 +209,13 @@ public class ZhJMapFrame extends JFrame {
                 }
 
                 if (this.toolSet.contains(Tool.OPENFILE)) {
-                    btn = new JButton(new OpenFileAction(this.mapPane));
+                    btn = new JButton(new ZhOpenFileAction(this.mapPane));
                     btn.setName("OpenFileButton");
                     this.toolBar.add(btn);
                 }
 
                 if (this.toolSet.contains(Tool.RUNSCRIPT)) {
-                    btn = new JButton(new RunScriptAction(this.mapPane));
+                    btn = new JButton(new ZhRunScriptAction(this.mapPane));
                     btn.setName("RunScriptButton");
                     this.toolBar.add(btn);
                 }

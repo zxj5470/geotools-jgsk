@@ -1,10 +1,18 @@
 package top.cuggis.geotools.extensions
 
-import java.awt.Dimension
-import java.awt.Image
-import java.io.File
 import javax.swing.ImageIcon
 import javax.swing.JButton
+import java.awt.image.BufferedImage
+import java.awt.image.ImageObserver
+import org.geotools.legend.Glyph.image
+import top.cuggis.geotools.Main
+import org.geotools.legend.Glyph.image
+import java.awt.*
+import java.awt.Color.white
+import org.geotools.legend.Glyph.image
+
+
+
 
 /*
  * @date: 2017/11/25
@@ -18,16 +26,10 @@ fun JButton.adaptImage(w: Int = 32, h: Int = 32) {
     }
 }
 
-fun adaptImage(self: ImageIcon, w: Int = 32, h: Int = 32): ImageIcon {
-    return ImageIcon(self.image.getScaledInstance(w, h, Image.SCALE_SMOOTH))
+fun adaptImage(self: Image, w: Int = 32, h: Int = 32): Image {
+    return self.getScaledInstance(w, h, Image.SCALE_SMOOTH)
 }
 
-//inline operator fun <T, R> T.invoke(block: (T) -> R): R = block(this)
-//
-//fun main(args: Array<String>) {
-//    val reader=File(".gitignore").inputStream()
-//    var len=0
-//    while ( (reader.read()){len=it;len!=-1} ){
-//        println(len.toChar())
-//    }
-//}
+fun cursorAdaptImage(self: ImageIcon, w: Int = 32, h: Int = 32): ImageIcon {
+    return ImageIcon(self.image.getScaledInstance(w, h, Image.SCALE_SMOOTH))
+}

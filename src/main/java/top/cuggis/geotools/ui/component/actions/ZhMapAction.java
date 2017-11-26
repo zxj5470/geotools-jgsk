@@ -1,4 +1,4 @@
-package top.cuggis.geotools.component.actions;
+package top.cuggis.geotools.ui.component.actions;
 
 import org.geotools.swing.MapPane;
 import org.geotools.swing.action.MapAction;
@@ -19,8 +19,7 @@ public abstract class ZhMapAction extends MapAction {
         this.putValue("ShortDescription", toolTip);
         if (iconImage != null) {
             ImageIcon tempIcon=new ImageIcon(ZhMapAction.class.getResource(iconImage));
-            this.putValue("SmallIcon",
-                    TransformKt.adaptImage(tempIcon,128,128));
+            this.putValue("SmallIcon",new ImageIcon(tempIcon.getImage()));
         }
     }
 

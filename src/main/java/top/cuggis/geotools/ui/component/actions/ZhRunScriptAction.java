@@ -1,4 +1,4 @@
-package top.cuggis.geotools.component.actions;
+package top.cuggis.geotools.ui.component.actions;
 
 import groovy.lang.GroovyShell;
 import org.geotools.swing.MapPane;
@@ -8,17 +8,17 @@ import top.cuggis.geotools.InitKt;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-public class RunScriptAction extends ZhMapAction {
+public class ZhRunScriptAction extends ZhMapAction {
 
     public static final String TOOL_NAME = LocaleUtils.getValue("Common", "RunScript");
     public static final String TOOL_TIP = LocaleUtils.getValue("Common", "RunScriptTooltip");
     public static final String ICON_IMAGE = "/top/cuggis/geotools/icons/runscript.png";
 
-    public RunScriptAction(MapPane mapPane) {
+    public ZhRunScriptAction(MapPane mapPane) {
         this(mapPane, false);
     }
 
-    public RunScriptAction(MapPane mapPane, boolean showToolName) {
+    public ZhRunScriptAction(MapPane mapPane, boolean showToolName) {
         String toolName = showToolName ? TOOL_NAME : null;
         super.init(mapPane, toolName, TOOL_TIP, ICON_IMAGE);
     }
