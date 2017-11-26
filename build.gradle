@@ -1,0 +1,47 @@
+group 'top.cuggis'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    ext.kotlin_version = '1.1.4-3'
+    ext.groovy_version = '2.4.13'
+    repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+
+repositories {
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs/geotools', include: ['*.jar'])
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.codehaus.groovy:groovy-all:$groovy_version"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'top.cuggis.geotools.Main'
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    into('') {
+        from "$projectDir/src/main/resources"
+    }
+}

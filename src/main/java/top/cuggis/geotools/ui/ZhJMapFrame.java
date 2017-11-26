@@ -33,9 +33,10 @@ import org.geotools.swing.action.InfoAction;
 import org.geotools.swing.action.NoToolAction;
 import org.geotools.swing.action.PanAction;
 import org.geotools.swing.action.ResetAction;
-import org.geotools.swing.action.ZoomInAction;
 import org.geotools.swing.action.ZoomOutAction;
 import org.geotools.swing.control.JMapStatusBar;
+import top.cuggis.geotools.component.actions.OpenFileAction;
+import top.cuggis.geotools.component.actions.RunScriptAction;
 import top.cuggis.geotools.component.actions.ZhZoomInAction;
 
 public class ZhJMapFrame extends JFrame {
@@ -167,14 +168,14 @@ public class ZhJMapFrame extends JFrame {
                 this.toolBar.setFloatable(false);
                 ButtonGroup cursorToolGrp = new ButtonGroup();
                 JButton btn;
-                if (this.toolSet.contains(ZhJMapFrame.Tool.POINTER)) {
+                if (this.toolSet.contains(Tool.POINTER)) {
                     btn = new JButton(new NoToolAction(this.mapPane));
                     btn.setName("ToolbarPointerButton");
                     this.toolBar.add(btn);
                     cursorToolGrp.add(btn);
                 }
 
-                if (this.toolSet.contains(ZhJMapFrame.Tool.ZOOM)) {
+                if (this.toolSet.contains(Tool.ZOOM)) {
                     btn = new JButton(new ZhZoomInAction(this.mapPane));
                     btn.setName("ToolbarZoomInButton");
                     this.toolBar.add(btn);
@@ -186,7 +187,7 @@ public class ZhJMapFrame extends JFrame {
                     this.toolBar.addSeparator();
                 }
 
-                if (this.toolSet.contains(ZhJMapFrame.Tool.PAN)) {
+                if (this.toolSet.contains(Tool.PAN)) {
                     btn = new JButton(new PanAction(this.mapPane));
                     btn.setName("ToolbarPanButton");
                     this.toolBar.add(btn);
@@ -194,19 +195,30 @@ public class ZhJMapFrame extends JFrame {
                     this.toolBar.addSeparator();
                 }
 
-                if (this.toolSet.contains(ZhJMapFrame.Tool.INFO)) {
+                if (this.toolSet.contains(Tool.INFO)) {
                     btn = new JButton(new InfoAction(this.mapPane));
                     btn.setName("ToolbarInfoButton");
                     this.toolBar.add(btn);
                     this.toolBar.addSeparator();
                 }
 
-                if (this.toolSet.contains(ZhJMapFrame.Tool.RESET)) {
+                if (this.toolSet.contains(Tool.RESET)) {
                     btn = new JButton(new ResetAction(this.mapPane));
                     btn.setName("ToolbarResetButton");
                     this.toolBar.add(btn);
                 }
 
+                if (this.toolSet.contains(Tool.OPENFILE)) {
+                    btn = new JButton(new OpenFileAction(this.mapPane));
+                    btn.setName("OpenFileButton");
+                    this.toolBar.add(btn);
+                }
+
+                if (this.toolSet.contains(Tool.RUNSCRIPT)) {
+                    btn = new JButton(new RunScriptAction(this.mapPane));
+                    btn.setName("RunScriptButton");
+                    this.toolBar.add(btn);
+                }
                 panel.add(this.toolBar, "grow");
             }
 
@@ -257,7 +269,9 @@ public class ZhJMapFrame extends JFrame {
         INFO,
         PAN,
         RESET,
-        ZOOM;
+        ZOOM,
+        OPENFILE,
+        RUNSCRIPT;
 
         private Tool() {
         }
