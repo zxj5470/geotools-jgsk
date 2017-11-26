@@ -1,15 +1,9 @@
-import top.cuggis.geotools.Main
-
-import javax.swing.JFileChooser
-import java.awt.GraphicsEnvironment;
-
-import org.geotools.swing.data.JFileDataStoreChooser
-import org.jb2011.lnf.beautyeye.ch20_filechooser.BEFileChooserUICross
+import javax.swing.JFrame
 
 class groovy {
     public static void main(String[] args) {
-        JFileDataStoreChooser f=new JFileDataStoreChooser("shp");
-        BEFileChooserUICross.createUI(f)
-        f.setVisible(true)
+        def a = new JFrame()
+        a.setSize(100,200)
+        a.visible=true
     }
 }
