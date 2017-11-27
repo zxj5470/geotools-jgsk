@@ -91,7 +91,6 @@ public class ZhJMapFrame extends JFrame {
         this.toolSet = EnumSet.noneOf(ZhJMapFrame.Tool.class);
         this.mapPane = new JMapPane(content);
         this.mapPane.setBackground(Color.WHITE);
-        this.mapPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.addWindowFocusListener(new WindowAdapter() {
             public void windowGainedFocus(WindowEvent e) {
                 ZhJMapFrame.this.mapPane.requestFocusInWindow();
