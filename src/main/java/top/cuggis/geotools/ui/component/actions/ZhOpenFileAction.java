@@ -3,7 +3,7 @@ package top.cuggis.geotools.ui.component.actions;
 import org.geotools.swing.MapPane;
 import org.geotools.swing.locale.LocaleUtils;
 import top.cuggis.geotools.Main;
-import top.cuggis.geotools.utils.MapLoader;
+import top.cuggis.geotools.utils.ZhMapLoader;
 
 import java.awt.event.ActionEvent;
 
@@ -24,6 +24,6 @@ public class ZhOpenFileAction extends ZhMapAction {
 
     public void actionPerformed(ActionEvent ev) {
         this.getMapPane().setCursorTool(null);
-        MapLoader.openAndLoadMap(Main.map,"shp");
+        ZhMapLoader.openAndLoadMap(Main.map,"shp");
     }
 }

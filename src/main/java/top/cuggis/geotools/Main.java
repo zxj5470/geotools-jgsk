@@ -2,14 +2,11 @@ package top.cuggis.geotools;
 
 
 import org.geotools.map.MapContent;
-
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 import top.cuggis.geotools.ui.ZhJMapFrame;
-import top.cuggis.geotools.utils.MapLoader;
+import top.cuggis.geotools.utils.ZhMapLoader;
 
 import javax.swing.*;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 
 
 public class Main {
@@ -19,35 +16,25 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //选择系统UI
-        BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
-        UIManager.put("RootPane.setupButtonVisible", false);
-        BeautyEyeLNFHelper.launchBeautyEyeLNF();
         map = new MapContent();
-        map.setTitle("GeoTools 地图");
         frame = new ZhJMapFrame(map);
-        frame.enableLayerTable(true);
-        frame.enableStatusBar(true);
-        frame.enableToolBar(true);
-        frame.initComponents();
-        frame.setSize(800, 600);
-//        debug jar Icon
-//        release jar Icon
+        ZhMapLoader.initMap();
         InitKt.adaptImageIcons();
-
         final int MOUSE_UP=-1;
         final int MOUSE_DOWN=1;
         frame.getMapPane().addMouseWheelListener(e->{
             switch (e.getWheelRotation()){
-                case MOUSE_UP:
-
+                case MOUSE_UP://放大
                     break;
-                case MOUSE_DOWN:
+                case MOUSE_DOWN://缩小
 
                     break;
                 default:
                     break;
             }
             System.out.println("x="+e.getX()+" ,y="+e.getY());
+            System.out.println(map.getViewport().getScreenArea().x);
+
         });
 
         frame.setVisible(true);

@@ -9,13 +9,30 @@ import org.geotools.map.MapContent;
 import org.geotools.styling.SLD;
 import org.geotools.styling.Style;
 import org.geotools.swing.data.JFileDataStoreChooser;
+import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 import org.jb2011.lnf.beautyeye.ch20_filechooser.BEFileChooserUICross;
 import top.cuggis.geotools.Main;
+import top.cuggis.geotools.ui.ZhJMapFrame;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
-public class MapLoader {
+public class ZhMapLoader {
+
+    public static void initMap() throws Exception {
+        BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
+        UIManager.put("RootPane.setupButtonVisible", false);
+        BeautyEyeLNFHelper.launchBeautyEyeLNF();
+
+        ZhJMapFrame frame=Main.frame;
+        frame.setTitle("GeoTools");
+        frame.enableLayerTable(true);
+        frame.enableStatusBar(true);
+        frame.enableToolBar(true);
+        frame.initComponents();
+        frame.setSize(800, 600);
+    }
 
     private static Layer openFile(String fileType) {
         Layer layer = null;
