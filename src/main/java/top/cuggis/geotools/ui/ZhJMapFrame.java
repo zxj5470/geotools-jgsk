@@ -29,10 +29,7 @@ import net.miginfocom.swing.MigLayout;
 import org.geotools.map.MapContent;
 import org.geotools.swing.JMapPane;
 import org.geotools.swing.MapLayerTable;
-import org.geotools.swing.action.InfoAction;
-import org.geotools.swing.action.NoToolAction;
-import org.geotools.swing.action.ResetAction;
-import org.geotools.swing.action.ZoomOutAction;
+import org.geotools.swing.action.*;
 import org.geotools.swing.control.JMapStatusBar;
 import top.cuggis.geotools.ui.component.actions.ZhOpenFileAction;
 import top.cuggis.geotools.ui.component.actions.ZhPanAction;
@@ -173,7 +170,6 @@ public class ZhJMapFrame extends JFrame {
                     this.toolBar.add(btn);
                     cursorToolGrp.add(btn);
                 }
-
                 if (this.toolSet.contains(Tool.ZOOM)) {
                     btn = new JButton(new ZhZoomInAction(this.mapPane));
                     btn.setName("ToolbarZoomInButton");

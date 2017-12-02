@@ -29,7 +29,7 @@ public class ZhRunScriptAction extends ZhMapAction {
         try {
             groovyShell.evaluate(new File("script.groovy"));
         }catch (Exception e){
-            e.printStackTrace();
+//            System.out.println();
         }
     }
 }
