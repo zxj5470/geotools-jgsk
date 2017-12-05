@@ -10,7 +10,6 @@ import org.geotools.styling.SLD;
 import org.geotools.styling.Style;
 import org.geotools.swing.data.JFileDataStoreChooser;
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
-import org.jb2011.lnf.beautyeye.ch20_filechooser.BEFileChooserUICross;
 import top.cuggis.geotools.Main;
 import top.cuggis.geotools.ui.ZhJMapFrame;
 

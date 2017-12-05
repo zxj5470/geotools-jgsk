@@ -26,6 +26,7 @@ public class Main {
         //选择系统UI
         map = new MapContent();
         frame = new ZhJMapFrame(map);
+
         ZhMapLoader.initMap();
         InitKt.adaptImageIcons();
         final int MOUSE_UP = -1;
