@@ -10,7 +10,7 @@ static void main(String[] args) {
         def a = new JFrame("Groovy脚本，Ctrl+Enter执行")
         a.setLayout(new BorderLayout())
         a.setSize(800, 400)
-        def text = new MyTextPane()
+        def text = new ZhTextPane()
         JScrollPane scroll = new JScrollPane(text)
         scroll.setHorizontalScrollBarPolicy(
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED)
@@ -39,7 +39,7 @@ println frame.getMapPane()"""
         a.iconImage = InitKt.getIcon()
         a.setAlwaysOnTop(true)
         a.visible = true
-        MyPrintStream mps = new MyPrintStream(System.out, console)
+        ZhPrintStream mps = new ZhPrintStream(System.out, console)
         System.setOut(mps)
         System.setErr(mps)
         text.addKeyListener(new KeyListener() {

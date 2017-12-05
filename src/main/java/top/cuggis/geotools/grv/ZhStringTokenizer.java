@@ -2,11 +2,11 @@ package top.cuggis.geotools.grv;
 
 import java.util.StringTokenizer;
 
-public class MyStringTokenizer extends StringTokenizer {
+public class ZhStringTokenizer extends StringTokenizer {
     private String oldStr, str;
     private int m_currPosition = 0, m_beginPosition = 0;
 
-    MyStringTokenizer(String str) {
+    ZhStringTokenizer(String str) {
         super(str, " ");
         this.oldStr = str;
         this.str = str;
@@ -18,10 +18,10 @@ public class MyStringTokenizer extends StringTokenizer {
             if (oldStr.equals(s)) {
                 return s;
             }
-            String sval = " ";
-            int pos = str.indexOf(s + sval);
+            String space = " ";
+            int pos = str.indexOf(s + space);
             if (pos == -1) {
-                pos = str.indexOf(sval + s);
+                pos = str.indexOf(space + s);
                 if (pos == -1)
                     return null;
                 else
@@ -37,7 +37,6 @@ public class MyStringTokenizer extends StringTokenizer {
             return null;
         }
     }
-    // 返回token在字符串中的位置
     public int getCurrPosition() {
         return m_currPosition;
     }

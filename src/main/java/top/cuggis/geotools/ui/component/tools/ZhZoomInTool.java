@@ -5,7 +5,7 @@ import org.geotools.geometry.Envelope2D;
 import org.geotools.swing.event.MapMouseEvent;
 import org.geotools.swing.locale.LocaleUtils;
 import org.geotools.swing.tool.AbstractZoomTool;
-import top.cuggis.geotools.constants.MouseConstans;
+import top.cuggis.geotools.constants.ZhMouseConstants;
 import top.cuggis.geotools.extensions.TransformKt;
 
 import javax.swing.*;
@@ -13,10 +13,10 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class ZhZoomInTool extends AbstractZoomTool {
-    public static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "ZoomIn");
+    private static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "ZoomIn");
     public static final String TOOL_TIP = LocaleUtils.getValue("CursorTool", "ZoomInTooltip");
     public static final String CURSOR_IMAGE = "/org/geotools/swing/icons/mActionZoomIn.png";
-    public static final Point CURSOR_HOTSPOT = MouseConstans.CURSOR_HOTSPOT;
+    private static final Point CURSOR_HOTSPOT = ZhMouseConstants.CURSOR_HOTSPOT;
     public static final String ICON_IMAGE = "/org/geotools/swing/icons/mActionZoomIn.png";
     private Cursor cursor;
     private final Point startPosDevice;

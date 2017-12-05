@@ -10,18 +10,18 @@ import org.geotools.swing.JMapPane;
 import org.geotools.swing.event.MapMouseEvent;
 import org.geotools.swing.locale.LocaleUtils;
 import org.geotools.swing.tool.CursorTool;
-import top.cuggis.geotools.constants.MouseConstans;
+import top.cuggis.geotools.constants.ZhMouseConstants;
 import top.cuggis.geotools.extensions.TransformKt;
 
 public class ZhPanTool extends CursorTool {
-    public static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "Pan");
+    private static final String TOOL_NAME = LocaleUtils.getValue("CursorTool", "Pan");
     public static final String TOOL_TIP = LocaleUtils.getValue("CursorTool", "PanTooltip");
     public static final String CURSOR_IMAGE = "/org/geotools/swing/icons/mActionPan.png";
-    public static final Point CURSOR_HOTSPOT = MouseConstans.CURSOR_HOTSPOT;
+    private static final Point CURSOR_HOTSPOT = ZhMouseConstants.CURSOR_HOTSPOT;
     public static final String ICON_IMAGE = "/org/geotools/swing/icons/mActionPan.png";
     private Cursor cursor;
     private Point panePos;
-    boolean panning;
+    private boolean panning;
 
     public ZhPanTool() {
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -40,7 +40,7 @@ public class ZhPanTool extends CursorTool {
         if (this.panning) {
             Point pos = ev.getPoint();
             if (!pos.equals(this.panePos)) {
-                ((JMapPane)this.getMapPane()).moveImage(pos.x - this.panePos.x, pos.y - this.panePos.y);
+                (this.getMapPane()).moveImage(pos.x - this.panePos.x, pos.y - this.panePos.y);
                 this.panePos = pos;
             }
         }

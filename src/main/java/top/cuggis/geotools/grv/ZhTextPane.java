@@ -7,21 +7,21 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class MyTextPane extends JTextPane {
-    private DefaultStyledDocument m_doc;
+public class ZhTextPane extends JTextPane {
+    private DefaultStyledDocument document;
     private MutableAttributeSet keyAttr, normalAttr, someAttr;
     private MutableAttributeSet bracketAttr;
     private MutableAttributeSet inputAttributes = new RTFEditorKit().getInputAttributes();
-    private static final String[] _keys = new String[]{"int", "static", "void", "public", "private", "double", "import", "def"};
-    private static final String[] _someWords = new String[]{"println", "out", "String"};
-    private static final char[] _character = new char[]{'(', ')', ',', '.',
+    private static final String[] keyWords = new String[]{"int", "static", "void", "public", "private", "double", "import", "def"};
+    private static final String[] someWords = new String[]{"println", "out", "String"};
+    private static final char[] characters = new char[]{'(', ')', ',', '.',
             ':', '\t', '\n', '+', '-', '*', '/'};
 
-    public MyTextPane() {
+    public ZhTextPane() {
         super();
-        StyleContext m_context = new StyleContext();
-        m_doc = new DefaultStyledDocument(m_context);
-        this.setDocument(m_doc);
+        StyleContext context = new StyleContext();
+        document = new DefaultStyledDocument(context);
+        this.setDocument(document);
         this.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent ke) {
                 dealSingleRow();
@@ -46,55 +46,55 @@ public class MyTextPane extends JTextPane {
         dealSingleRow();
     }
 
-    private void setBracketColor(String _text) {
-        int len = _text.length();
+    private void setBracketColor(String text) {
+        int len = text.length();
         for (int i = 0; i < len; i++) {
-            char ch = _text.charAt(i);
+            char ch = text.charAt(i);
             if (ch == '{' || ch == '}') {
-                m_doc.setCharacterAttributes(i, 1, bracketAttr, false);
+                document.setCharacterAttributes(i, 1, bracketAttr, false);
             }
         }
     }
 
-    private boolean isCharacter(char _ch) {
-        for (char a_character : _character) {
-            if (_ch == a_character) {
+    private boolean isCharacter(char c) {
+        for (char each : characters) {
+            if (c == each) {
                 return true;
             }
         }
         return false;
     }
 
-    private void setKeyColor(String _key, int _start, String[] typeOfKey, MutableAttributeSet attr) {
+    private void setKeyColor(String key, int start, String[] typeOfKey, MutableAttributeSet attr) {
         for (String k : typeOfKey) {
-            int li_index = _key.indexOf(k);
-            if (li_index < 0) {
+            int index = key.indexOf(k);
+            if (index < 0) {
                 continue;
             }
-            int li_legnth = li_index + k.length();
-            if (li_legnth == _key.length()) {
-                if (li_index == 0) {//处理单独一个关键字的情况，例如：if else 等
-                    m_doc.setCharacterAttributes(_start, k.length(),
+            int length = index + k.length();
+            if (length == key.length()) {
+                if (index == 0) {//处理单独一个关键字的情况，例如：if else 等
+                    document.setCharacterAttributes(start, k.length(),
                             attr, false);
                 } else {//处理关键字前面还有字符的情况，例如：)if else 等
-                    char ch_temp = _key.charAt(li_index - 1);
-                    if (isCharacter(ch_temp)) {
-                        m_doc.setCharacterAttributes(_start + li_index,
+                    char chTemp = key.charAt(index - 1);
+                    if (isCharacter(chTemp)) {
+                        document.setCharacterAttributes(start + index,
                                 k.length(), attr, false);
                     }
                 }
             } else {
-                if (li_index == 0) {
-                    char ch_temp = _key.charAt(k.length());
-                    if (isCharacter(ch_temp)) {
-                        m_doc.setCharacterAttributes(_start, k.length(),
+                if (index == 0) {
+                    char chTemp = key.charAt(k.length());
+                    if (isCharacter(chTemp)) {
+                        document.setCharacterAttributes(start, k.length(),
                                 attr, false);
                     }
                 } else {
-                    char ch_temp = _key.charAt(li_index - 1);
-                    char ch_temp_2 = _key.charAt(li_legnth);
-                    if (isCharacter(ch_temp) && isCharacter(ch_temp_2)) {
-                        m_doc.setCharacterAttributes(_start + li_index,
+                    char chTemp = key.charAt(index - 1);
+                    char chTemp2 = key.charAt(length);
+                    if (isCharacter(chTemp) && isCharacter(chTemp2)) {
+                        document.setCharacterAttributes(start + index,
                                 k.length(), attr, false);
                     }
                 }
@@ -102,10 +102,10 @@ public class MyTextPane extends JTextPane {
         }
     }
 
-    public void dealText(int _start, int _end) {
+    public void dealText(int start, int end) {
         String text = "";
         try {
-            text = m_doc.getText(_start, _end - _start).toUpperCase();
+            text = document.getText(start, end - start).toUpperCase();
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
@@ -113,22 +113,22 @@ public class MyTextPane extends JTextPane {
             return;
         }
         int xStart;
-        m_doc.setCharacterAttributes(_start, text.length(), normalAttr, false);
-        MyStringTokenizer st = new MyStringTokenizer(text);
+        document.setCharacterAttributes(start, text.length(), normalAttr, false);
+        ZhStringTokenizer st = new ZhStringTokenizer(text);
         while (st.hasMoreTokens()) {
             String s = st.nextToken();
             if (s == null)
                 return;
             xStart = st.getCurrPosition();
-            setKeyColor(s.toLowerCase(), _start + xStart, _keys, keyAttr);
-            setKeyColor(s.toLowerCase(), _start + xStart, _someWords, someAttr);
+            setKeyColor(s.toLowerCase(), start + xStart, keyWords, keyAttr);
+            setKeyColor(s.toLowerCase(), start + xStart, someWords, someAttr);
         }
         setBracketColor(text);
         inputAttributes.addAttributes(normalAttr);
     }
 
     private void dealSingleRow() {
-        Element root = m_doc.getDefaultRootElement();
+        Element root = document.getDefaultRootElement();
         int cursorPos = this.getCaretPosition();
         int line = root.getElementIndex(cursorPos);
         Element para = root.getElement(line);

@@ -4,12 +4,12 @@ import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import java.io.*;
 
-public class MyPrintStream extends PrintStream {
+public class ZhPrintStream extends PrintStream {
 
     private JTextPane text;
     private StringBuffer sb = new StringBuffer();
 
-    public MyPrintStream(OutputStream out, JTextPane text) {
+    public ZhPrintStream(OutputStream out, JTextPane text) {
         super(out);
         this.text = text;
     }
