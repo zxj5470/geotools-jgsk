@@ -6,14 +6,11 @@ import org.geotools.geometry.Envelope2D;
 import org.geotools.map.MapContent;
 import org.geotools.swing.MapPane;
 import top.cuggis.geotools.ui.ZhJMapFrame;
-import top.cuggis.geotools.utils.ZhMapLoader;
+import top.cuggis.geotools.ui.ZhMapLoader;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
 
 
 public class Main {

@@ -1,9 +1,10 @@
+package top.cuggis.geotools
+
 import java.awt.*
 import java.awt.Font
 import java.awt.event.*
 
 import javax.swing.*
-import top.cuggis.geotools.InitKt
 import top.cuggis.geotools.grv.ZhTextPane
 import top.cuggis.geotools.grv.ZhPrintStream
 

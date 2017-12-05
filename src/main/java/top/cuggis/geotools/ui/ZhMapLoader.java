@@ -1,4 +1,4 @@
-package top.cuggis.geotools.utils;
+package top.cuggis.geotools.ui;
 
 import org.geotools.data.FileDataStore;
 import org.geotools.data.FileDataStoreFinder;
@@ -11,7 +11,6 @@ import org.geotools.styling.Style;
 import org.geotools.swing.data.JFileDataStoreChooser;
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 import top.cuggis.geotools.Main;
-import top.cuggis.geotools.ui.ZhJMapFrame;
 
 import javax.swing.*;
 import java.io.File;
