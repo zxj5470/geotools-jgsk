@@ -31,10 +31,7 @@ import org.geotools.swing.JMapPane;
 import org.geotools.swing.MapLayerTable;
 import org.geotools.swing.action.*;
 import org.geotools.swing.control.JMapStatusBar;
-import top.cuggis.geotools.ui.component.actions.ZhOpenFileAction;
-import top.cuggis.geotools.ui.component.actions.ZhPanAction;
-import top.cuggis.geotools.ui.component.actions.ZhRunScriptAction;
-import top.cuggis.geotools.ui.component.actions.ZhZoomInAction;
+import top.cuggis.geotools.ui.component.actions.*;
 
 public class ZhJMapFrame extends JFrame {
     public static final String TOOLBAR_INFO_BUTTON_NAME = "ToolbarInfoButton";
@@ -175,7 +172,7 @@ public class ZhJMapFrame extends JFrame {
                     btn.setName("ToolbarZoomInButton");
                     this.toolBar.add(btn);
                     cursorToolGrp.add(btn);
-                    btn = new JButton(new ZoomOutAction(this.mapPane));
+                    btn = new JButton(new ZhZoomOutAction(this.mapPane));
                     btn.setName("ToolbarZoomOutButton");
                     this.toolBar.add(btn);
                     cursorToolGrp.add(btn);
