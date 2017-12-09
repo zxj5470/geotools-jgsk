@@ -1,5 +1,7 @@
 package top.cuggis.geotools.grv;
 
+import top.cuggis.geotools.utils.SystemChooser;
+
 import javax.swing.*;
 import javax.swing.text.*;
 import javax.swing.text.rtf.RTFEditorKit;
@@ -29,19 +31,24 @@ public class ZhTextPane extends JTextPane {
         });
         keyAttr = new SimpleAttributeSet();
         StyleConstants.setForeground(keyAttr, Color.decode("0x00007f"));
-
+        String fontFamily;
+        if(SystemChooser.isLinux()){
+            fontFamily="YaHei Consolas Hybrid";
+        }else{
+            fontFamily="Consolas";
+        }
         someAttr = new SimpleAttributeSet();
         StyleConstants.setForeground(someAttr, Color.decode("233333"));
 
         normalAttr = new SimpleAttributeSet();
-        StyleConstants.setFontFamily(normalAttr, "Consolas");
+        StyleConstants.setFontFamily(normalAttr, fontFamily);
         StyleConstants.setBold(normalAttr, false);
         StyleConstants.setForeground(normalAttr, Color.black);
 
 
         bracketAttr = new SimpleAttributeSet();
         StyleConstants.setForeground(bracketAttr, Color.RED);
-        StyleConstants.setFontFamily(bracketAttr, "Consolas");
+        StyleConstants.setFontFamily(bracketAttr, fontFamily);
         StyleConstants.setBold(bracketAttr, true);
         dealSingleRow();
     }

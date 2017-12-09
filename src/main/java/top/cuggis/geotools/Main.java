@@ -20,7 +20,6 @@ public class Main {
     public static MapContent map;
 
     public static void main(String[] args) throws Exception {
-        //选择系统UI
         map = new MapContent();
         frame = new ZhJMapFrame(map);
 
