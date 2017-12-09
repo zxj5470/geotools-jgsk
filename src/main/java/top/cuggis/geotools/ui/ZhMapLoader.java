@@ -19,10 +19,13 @@ import java.io.IOException;
 public class ZhMapLoader {
 
     public static void initMap() throws Exception {
-        BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
-        UIManager.put("RootPane.setupButtonVisible", false);
-        BeautyEyeLNFHelper.launchBeautyEyeLNF();
-
+        boolean useBeautyEye=true;
+//        boolean useBeautyEye=false;
+        if(useBeautyEye){
+            BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.osLookAndFeelDecorated;
+            UIManager.put("RootPane.setupButtonVisible", false);
+            BeautyEyeLNFHelper.launchBeautyEyeLNF();
+        }
         ZhJMapFrame frame=Main.frame;
         frame.setTitle("GeoTools");
         frame.enableLayerTable(true);

@@ -15,7 +15,7 @@ import java.awt.geom.AffineTransform;
 
 public class Main {
 
-    public int a = 0;
+//    public int a = 0;
     public static ZhJMapFrame frame;
     public static MapContent map;
 
