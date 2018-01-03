@@ -4,18 +4,16 @@ package top.cuggis.geotools;
 import org.geotools.geometry.DirectPosition2D;
 import org.geotools.geometry.Envelope2D;
 import org.geotools.map.MapContent;
-import org.geotools.swing.MapPane;
 import top.cuggis.geotools.ui.ZhJMapFrame;
 import top.cuggis.geotools.ui.ZhMapLoader;
+import top.cuggis.geotools.utils.ZhMapMouseWheelEvent;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.geom.AffineTransform;
 
 
 public class Main {
 
-//    public int a = 0;
+    //    public int a = 0;
     public static ZhJMapFrame frame;
     public static MapContent map;
 
@@ -25,29 +23,35 @@ public class Main {
 
         ZhMapLoader.initMap();
         InitKt.adaptImageIcons();
-        final int MOUSE_UP = -1;
-        final int MOUSE_DOWN = 1;
-        frame.getMapPane().addMouseWheelListener(e -> {
-            switch (e.getWheelRotation()) {
-                case MOUSE_UP://放大
-                    Rectangle paneArea = frame.getMapPane().getVisibleRect();
-                    calculateWorldPos(frame.getMapPane(), e);
-                    DirectPosition2D mapPos = calculateWorldPos(frame.getMapPane(), e);
-                    double scale = frame.getMapPane().getWorldToScreenTransform().getScaleX();
-                    double newScale = scale * 1.1;
-                    Envelope2D newMapArea = new Envelope2D();
-//                    newMapArea.setFrameFromCenter(mapPos, corner);
-                    double x = mapPos.x - 0.5D * paneArea.getWidth() / newScale;
-                    double y = mapPos.y + 0.5D * paneArea.getHeight() / newScale;
-                    newMapArea.setFrame(
-                            x,
-                            y,
-                            1,
-                            1
-                    );
+
+        //鼠标滚动事件
+        frame.getMapPane().addMouseListener((ZhMapMouseWheelEvent)me->{
+            System.out.println(me.getWheelAmount());
+            Rectangle paneArea = frame.getMapPane().getVisibleRect();
+            DirectPosition2D mapPos = me.getWorldPos();
+            double scale = frame.getMapPane().getWorldToScreenTransform().getScaleX();
+            Envelope2D newMapArea;
+            double leftTopX;
+            double rightBottomY;
+            switch (me.getWheelAmount()) {
+                case 1://缩小
+                    double newScale;
+                    newScale = scale / 1.1;
+                    leftTopX=mapPos.getX() - 0.5 * paneArea.getWidth() / newScale;
+                    rightBottomY=mapPos.getY() + 0.5 * paneArea.getHeight() / newScale;
+                    DirectPosition2D corner = new DirectPosition2D(leftTopX, rightBottomY);
+                    newMapArea = new Envelope2D();
+                    newMapArea.setFrameFromCenter(mapPos, corner);
                     frame.getMapPane().setDisplayArea(newMapArea);
                     break;
-                case MOUSE_DOWN://缩小
+                case -1://放大
+                    newScale = scale * 1.1;
+                    leftTopX=mapPos.getX() - 0.5 * paneArea.getWidth() / newScale;
+                    rightBottomY=mapPos.getY() + 0.5 * paneArea.getHeight() / newScale;
+                    corner = new DirectPosition2D(leftTopX, rightBottomY);
+                    newMapArea = new Envelope2D();
+                    newMapArea.setFrameFromCenter(mapPos, corner);
+                    frame.getMapPane().setDisplayArea(newMapArea);
                     break;
                 default:
                     break;
@@ -55,14 +59,6 @@ public class Main {
         });
 
         frame.setVisible(true);
-    }
-
-    private static DirectPosition2D calculateWorldPos(MapPane pane, MouseEvent event) {
-        AffineTransform tr = pane.getScreenToWorldTransform();
-        DirectPosition2D pos = new DirectPosition2D((double) event.getX(), (double) event.getY());
-        tr.transform(pos, pos);
-        pos.setCoordinateReferenceSystem(pane.getMapContent().getCoordinateReferenceSystem());
-        return new DirectPosition2D(pos.getCoordinateReferenceSystem(), pos.x, pos.y);
     }
 }
 

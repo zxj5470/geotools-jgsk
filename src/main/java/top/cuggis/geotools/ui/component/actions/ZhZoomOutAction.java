@@ -2,7 +2,7 @@ package top.cuggis.geotools.ui.component.actions;
 
 import org.geotools.swing.MapPane;
 import org.geotools.swing.tool.ZoomInTool;
-import top.cuggis.geotools.ui.component.tools.ZhZoomInTool;
+import top.cuggis.geotools.ui.component.tools.ZhZoomOutTool;
 
 import java.awt.event.ActionEvent;
 
@@ -17,6 +17,6 @@ public class ZhZoomOutAction extends ZhMapAction {
     }
 
     public void actionPerformed(ActionEvent ev) {
-        this.getMapPane().setCursorTool(new ZhZoomInTool());
+        this.getMapPane().setCursorTool(new ZhZoomOutTool());
     }
 }
